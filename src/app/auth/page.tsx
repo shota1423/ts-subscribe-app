@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, NextPage } from "next";
 import Head from "next/head";
 import Button from "../components/button";
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "ログインページです",
 };
 
-const login = (): React.JSX.Element => {
+const login: NextPage = () => {
   return (
     <div className="min-h-screen bg-purple-50 flex items-center justify-center">
       <Head>
