@@ -1,17 +1,19 @@
-import { Metadata, NextPage } from "next";
+"use client";
+
+import { NextPage } from "next";
 import Head from "next/head";
-import Button from "../components/button";
+import Button from "../../components/button";
+import { useRouter } from "next/navigation";
+import { IoKeyOutline } from "react-icons/io5";
+import { MdOutlineEmail } from "react-icons/md";
 
-export const metadata: Metadata = {
-  title: "ログイン",
-  description: "ログインページです",
-};
+const Login: NextPage = () => {
+  const router = useRouter();
 
-const login: NextPage = () => {
   return (
     <div className="min-h-screen bg-purple-50 flex items-center justify-center">
       <Head>
-        <title>Login - Finarium</title>
+        <title>Login - Subscribe</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -32,12 +34,17 @@ const login: NextPage = () => {
             >
               Email Address
             </label>
-            <input
-              type="email"
-              id="email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
-              placeholder="Enter your email"
-            />
+            <div className="relative mb-3">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <MdOutlineEmail className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="email"
+                id="email"
+                className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+                placeholder="Enter your email"
+              />
+            </div>
 
             <div className="mb-6">
               <label
@@ -46,12 +53,17 @@ const login: NextPage = () => {
               >
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
-                placeholder="Enter your password"
-              />
+              <div className="relative mb-3">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <IoKeyOutline className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  className="w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+                  placeholder="Enter your password"
+                />
+              </div>
             </div>
           </div>
 
@@ -71,7 +83,11 @@ const login: NextPage = () => {
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            <a href="#" className="text-purple-600 hover:underline ml-1">
+            <a
+              href="#"
+              className="text-purple-600 hover:underline ml-1"
+              onClick={() => router.push("/user/signup")}
+            >
               Sign up
             </a>
           </p>
@@ -80,4 +96,4 @@ const login: NextPage = () => {
     </div>
   );
 };
-export default login;
+export default Login;
