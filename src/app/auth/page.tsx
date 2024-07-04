@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Head from "next/head";
+import Button from "../components/button";
 
 export const metadata: Metadata = {
   title: "ログイン",
@@ -54,12 +55,12 @@ const login = (): React.JSX.Element => {
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-lg"
+            className="w-full bg-purple-600 text-white py-2 px-4 hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
           >
             Log In
-          </button>
+          </Button>
         </form>
 
         <div className="mt-4 text-center">
