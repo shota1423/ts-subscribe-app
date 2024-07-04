@@ -20,7 +20,7 @@ const config: Config = {
     borderRadius: {
       large: "30px",
       lg: "10px",
-      md: "5px",
+      md: "7px",
     },
   },
   plugins: [],
