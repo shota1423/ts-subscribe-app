@@ -6,9 +6,25 @@ import Button from "../../components/button";
 import { useRouter } from "next/navigation";
 import { IoKeyOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
+import { Auth } from "@/domain/models/Auth";
+import useFormFields from "../utils/useFormFields";
+import { authLoginUser } from "@/lib/auth/api";
+import { useAuth } from "../context/AuthContext";
 
 const Login: NextPage = () => {
   const router = useRouter();
+  const { field, formChangeHandler } = useFormFields<Auth>({
+    email: "",
+    password: "",
+  });
+  const { login, jwt } = useAuth();
+
+  const loginHandler = async () => {
+    const res = await authLoginUser(field);
+    console.log(jwt);
+    console.log(res);
+    login(res.token, res.refreshToken);
+  };
 
   return (
     <div className="min-h-screen bg-purple-50 flex items-center justify-center">
@@ -41,8 +57,10 @@ const Login: NextPage = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
                 className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
                 placeholder="Enter your email"
+                onChange={formChangeHandler}
               />
             </div>
 
@@ -60,20 +78,21 @@ const Login: NextPage = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   className="w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
                   placeholder="Enter your password"
+                  onChange={formChangeHandler}
                 />
               </div>
             </div>
           </div>
-
-          <Button
-            type="submit"
-            className="w-full bg-purple-600 text-white py-2 px-4 hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-          >
-            Log In
-          </Button>
         </form>
+        <Button
+          className="w-full bg-purple-600 text-white py-2 px-4 hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          onClick={loginHandler}
+        >
+          Log In
+        </Button>
 
         <div className="mt-4 text-center">
           <a href="#" className="text-sm text-purple-600 hover:underline">
