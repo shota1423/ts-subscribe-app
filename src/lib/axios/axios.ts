@@ -1,11 +1,13 @@
-import axios from "axios";
-import { v7 as uuid7 } from "uuid";
+import axios, { AxiosInstance } from "axios";
+import { v4 as uuidv4 } from "uuid";
 
-export const axiosInstance = axios.create({
-  baseURL: process.env.BASE_API_ENDPOINT,
+const requestId = uuidv4();
+export const axiosInstance: AxiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_API_ENDPOINT,
   timeout: 10000,
   headers: {
-    "x-requestId": uuid7(),
+    "Content-Type": "application/json",
+    "x-requestId": requestId,
   },
 });
 
